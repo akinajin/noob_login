@@ -1,20 +1,64 @@
-# Script requres specific name and password to complete.
+# Script that requres specific name and password to complete. Supports multiple users
 
-# User name entry part
+# Requests username input.
 while True:
     print('Enter your name: ')
     name = input()
-    if name.upper() or name.lower() == 'Matt': # upper() and lower() allows for password name to be cap or not
-        break
-    else:
-        print('       ACCESS DENIED')
 
-# User password entry part    
-while True:    
-    print('Enter your password: ')
-    password = input()
-    if password == '123':
-        print('      ACCESS GRANTED.')
+# Matches username from input() and passes it to password block.
+    if name == 'Bill':
+        line = 2
+        break
+    elif name == 'Matt':
+        line = 3
+        break
+    elif name == 'Sarah':
+        line = 4
+        break
+    elif name == 'Kip':
+        line = 5
         break
     else:
-        print('Password Incorrect.')
+        print('        ACCESS DENIED.')
+
+# Password block. Prompts user to enter password connected to username.
+if line == 2:
+    while True:
+        print('Enter your password: ')
+        password = input()
+        if password == '1234':
+            print('       WELCOME BILL!')
+            break
+        else:
+            print('Password Incorrect.')
+
+if line == 3:
+    while True:
+        print('Enter your password: ')
+        password = input()
+        if password == '7480':
+            print('       WELCOME MATT!')
+            break
+        else:
+            print('Password Incorrect.')
+
+if line == 4:
+    while True:
+        if line == 4:
+            print('Enter your password: ')
+            password = input()
+            if password == 'abcd':
+                print('       WELCOME SARAH!')
+                break
+            else:
+                print('Password Incorrect.')
+
+if line == 5:
+    while True:
+        print('Enter your password: ')
+        password = input()
+        if password == '2022':
+            print('       WELCOME KIP!')
+            break
+        else:
+            print('Password Incorrect.')
