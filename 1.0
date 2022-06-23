@@ -1,0 +1,34 @@
+import sqlite3
+
+# Connects SQlite to the database of choice
+connection = sqlite3.connect('/path/to/database')
+cursor = connection.cursor()
+
+# Requests user for name input then queries database with input for an associated password stored in 'name'.
+name = input('Enter your name: ')
+cursor.execute("SELECT password FROM users WHERE name = ?", (name,))
+pin = cursor.fetchone()
+
+# Requests user for password input then compares it with password stored in 'name'.
+while True:
+    password = int(input('Enter your password:  '))
+    if password == pin[0]:
+        print('Welcome ' + name)
+        break
+    else:
+        print('Password Incorrect.')
+
+# Asks user input to change password. If input is 'yes', connected database password cell is updated. 
+while True:
+    change = input('Would you like to change your password, yes or no? ')
+    if change == 'yes':
+        newPass = int(input('Enter new password: '))
+        password_update = """Update users Set password = ? where name = ?"""
+        data = (newPass, name)
+        cursor.execute(password_update, data)
+        connection.commit()
+        print("Password Updated successfully")
+        cursor.close()
+        break
+    else:
+        break
